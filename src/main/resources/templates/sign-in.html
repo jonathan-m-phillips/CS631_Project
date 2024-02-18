@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>NJIT</title>
+</head>
+<body>
+<h3>Login</h3>
+
+<form action="#" th:action="@{/sign-in}" method="post">
+    <div>
+        <label for="username">Email:</label>
+        <input type="text" id="username" name="username"/>
+    </div>
+    <div>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password"/>
+    </div>
+    <div>
+        <button type="submit">Login</button>
+    </div>
+</form>
+
+<h6>Don't have an account? <a href="/register">Register here</a></h6>
+</body>
+</html>

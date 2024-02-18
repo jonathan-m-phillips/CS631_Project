@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>All Courses</title>
+</head>
+<body>
+<div th:replace="~{nav :: nav}"></div>
+
+<h1>All Courses</h1>
+<div th:each="course : ${courses}">
+    <p th:text="'Course ID: ' + ${course.courseId} + ', Title: ' + ${course.title}"></p>
+
+    <div th:if="${user.role == 'STUDENT'}">
+        <form th:action="@{/courses/enroll}" method="post">
+            <input type="hidden" name="courseId" th:value="${course.id}" />
+            <button type="submit" th:text="${course.students.contains(user) ? 'Drop' : 'Enroll'}"></button>
+        </form>
+    </div>
+
+    <div th:if="${user.role == 'FACULTY' and course.faculty == user}">
+        <form th:action="@{/courses/delete}" method="post">
+            <input type="hidden" name="courseId" th:value="${course.id}" />
+            <button type="submit">Delete</button>
+        </form>
+    </div>
+</div>
+
+<div th:if="${user.role == 'FACULTY'}">
+    <a href="/create-course">Create Class</a>
+</div>
+</body>
+</html>

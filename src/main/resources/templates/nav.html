@@ -1,0 +1,7 @@
+<div th:fragment="nav">
+    <a href="/dashboard" th:text="${user.firstName} + '\'s Dashboard'"></a>
+    <form th:action="@{/logout}" method="post" style="display: inline">
+        <input type="hidden" name="_csrf" value="${_csrf.token}" />
+        <input type="submit" value="Logout">
+    </form>
+</div>

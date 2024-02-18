@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div th:replace="~{nav :: nav}"></div>
+
+<h1 th:text="'Course: ' + ${course.courseId} + ' ' + ${course.title}"></h1>
+
+<h3 th:if="${user.role == 'FACULTY'}">Students</h3>
+<div th:if="${user.role == 'FACULTY'}" th:each="grade : ${grades}">
+    <span th:text="${grade.student.firstName} + ' ' + ${grade.student.lastName} + ': ' + ${grade.grade}"></span>
+</div>
+
+<div th:if="${user.role == 'STUDENT'}">
+    <h3>Your Grade</h3>
+    <p th:text="${grade.grade}"></p>
+</div>
+</body>
+</html>

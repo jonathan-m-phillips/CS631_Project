@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div th:replace="~{nav :: nav}"></div>
+
+<h1 th:text="'Hello, ' + ${user.firstName} + ' ' + ${user.lastName}"></h1>
+
+<h3>Courses</h3>
+<p th:each="course : ${courses}">
+    <a th:href="@{'/course/' + ${course.id}}"><span th:text="${course.courseId} + ' ' + ${course.title}"></span></a>
+</p>
+
+<div th:if="${user.role == 'FACULTY'}">
+    <a href="/create-course">Create Class</a>
+</div>
+<a href="/courses">List All Courses</a>
+</body>
+</html>
